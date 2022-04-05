@@ -1,0 +1,12 @@
+{
+    "name": "com/test",
+    "authors": [
+        {
+            "name": "Com",
+            "email": "kattre2020@gmail.com"
+        }
+    ],
+    "require": {
+    	"denpa/php-bitcoinrpc": "^2.1"
+    }
+}
