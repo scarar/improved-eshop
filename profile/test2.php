@@ -1,4 +1,5 @@
 <?php
+// Use the HTML in this file to keep the layout. DO NOT USE THESE LOGICS
 // Check if user is not logged in, redirect him to login page
 session_start();
 if($_SESSION['user']==''){
