@@ -1,7 +1,8 @@
 <?php
-// Error Checking
+// Error Checking - Remove for development - Working!
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+// Start Session 
 session_start();
 if (empty($_SESSION['user'])) {
     header('Location: http://' . $_SERVER["HTTP_HOST"] . '/login');
