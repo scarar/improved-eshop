@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 01, 2018 at 04:28 PM
--- Server version: 10.1.26-MariaDB-0+deb9u1
--- PHP Version: 7.0.27-0+deb9u1
+-- Host: localhost
+-- Generation Time: Mar 09, 2024 at 08:01 PM
+-- Server version: 10.11.6-MariaDB-0+deb12u1
+-- PHP Version: 8.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `title` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
@@ -66,7 +67,7 @@ CREATE TABLE `orders` (
   `order_additional_info` text NOT NULL,
   `order_status` varchar(50) NOT NULL,
   `ordered_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
@@ -93,7 +94,22 @@ INSERT INTO `orders` (`id`, `customer`, `vendor`, `order_bitcoin_address`, `orde
 (62, 'test2', 'test2', '2N8mZpQdgYcqohVQaMD6tcahMveTNgwKVZV', '342tsetto2tset20180501032924', 34, 0.002, 1, 0.002, 1, 'test', '', 'pending', '2018-05-01 03:29:38'),
 (63, 'test2', 'aliusmanabbasi', '2NBY9B8SnXXSQTKzqJqWYAKf2pk1kQC2DaZ', '232tsettoisabbanamsuila20180501033736', 23, 0.2, 1, 0.2, 1, 'test', '', 'pending', '2018-05-01 03:37:43'),
 (64, 'test3', 'aliusmanabbasi', '38eUAfKbnDNQcY4HV4xzy5AaVf6TP6Vq5N', '233tsettoisabbanamsuila20180501040207', 23, 0.2, 1, 0.2, 1, 'test', 'test', 'pending', '2018-05-01 04:02:23'),
-(65, 'test2', 'aliusmanabbasi', '3LEu4Mi8PJbWvZN6cgcxF6bLLQ39hvrZoK', '272tsettoisabbanamsuila20180501041516', 27, 15, 1, 15, 1, 'test', 'test', 'pending', '2018-05-01 04:15:26');
+(65, 'test2', 'aliusmanabbasi', '3LEu4Mi8PJbWvZN6cgcxF6bLLQ39hvrZoK', '272tsettoisabbanamsuila20180501041516', 27, 15, 1, 15, 1, 'test', 'test', 'pending', '2018-05-01 04:15:26'),
+(66, 'shit', 'aliusmanabbasi', 'bc1q8kqgfpp4sf77z8xaqf8lcyts95jt2ynhw00gp0', '23tihstoisabbanamsuila20230325075238', 23, 0.2, 1, 0.2, 1, '', '', 'pending', '2023-03-25 07:52:41'),
+(67, 'shit', 'aliusmanabbasi', 'bc1qzyn3r6mzt34kkrdnfphdk79x0wrzgkn3vvja59', '23tihstoisabbanamsuila20230325075243', 23, 0.2, 1, 0.2, 1, '', '', 'pending', '2023-03-25 07:52:48'),
+(68, 'shit', 'aliusmanabbasi', 'bc1q9dr732e6j0x63s4pt9my4vpt9q3hd5dsl3nucr', '23tihstoisabbanamsuila20230325075250', 23, 0.2, 1, 0.2, 1, '1', '1', 'pending', '2023-03-25 07:53:00'),
+(70, 'fuckyou', 'shit', 'bc1qupttfshpd45s2y42lc3q9fck8k595fdg3wu2hj', '43uoykcuftotihs20230403063409', 43, 1, 1, 1, 1, 'dfefdffd', '', 'pending', '2023-04-03 06:48:22'),
+(71, 'fuckyou', 'shit', 'bc1qmmp7usx3ytzsrhyuppceaz70qh4rjk97nmcgqs', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:12:41'),
+(72, 'fuckyou', 'shit', 'bc1q5csjtc69y55w3yas59qhdqajtu62tre8dham49', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:14:31'),
+(73, 'fuckyou', 'shit', 'bc1qhh48gcnnelm4kwy07ax35jlwjee85xxqkqturv', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:15:50'),
+(74, 'fuckyou', 'shit', 'bc1qk80ur4vz687wzzpn6vu9m6ukn3utdr04xdc299', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:19:38'),
+(75, 'fuckyou', 'shit', 'bc1qpdgc4ww4tze9850rrdlm204xqvucvhgw6qrvz9', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:27:43'),
+(76, 'fuckyou', 'shit', 'bc1q4w5st9hmkga0mmae69am508xrkw6vpn5mrwfv8', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:28:50'),
+(77, 'fuckyou', 'shit', 'bc1q66p3fqdm0hgdnfpvf6c302ccsz3ymwqyrtlc8j', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:29:18'),
+(78, 'fuckyou', 'shit', 'bc1qndmhwkfx5pzdx6zuwtg08xlru76ghqpfw9l0rl', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:29:29'),
+(79, 'fuckyou', 'shit', 'bc1qz2hga3dud8kle9tc76jakm5x4kgkqytx33gkh7', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:34:28'),
+(80, 'fuckyou', 'shit', 'bc1qrlwueraqnranyntfshpt6svveph6e6zmevxurz', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:36:54'),
+(81, 'fuckyou', 'shit', 'bc1qgpmqzvaezwv4c56tr5wt5ur334k33x8dm3flnt', '40uoykcuftotihs20230403071040', 40, 10, 1, 10, 1, 'dfdsfdsffdsf', '', 'pending', '2023-04-03 07:40:59');
 
 -- --------------------------------------------------------
 
@@ -111,7 +127,7 @@ CREATE TABLE `order_reviews` (
   `review_description` varchar(500) NOT NULL,
   `review_rating` int(11) NOT NULL,
   `rated_on` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `order_reviews`
@@ -140,7 +156,7 @@ CREATE TABLE `products` (
   `requires_fe` tinyint(1) NOT NULL,
   `product_type` varchar(50) NOT NULL,
   `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
@@ -157,7 +173,10 @@ INSERT INTO `products` (`id`, `title`, `image`, `price`, `description`, `short_d
 (31, 'eGift Cards NEW', '5a4a29d3bdcc05-58640463.png', 25, 'cards', 'new year cards', 'cards', 'aliusmanabbasi', 1, 'physical', 5),
 (32, 'eGift Cards NEW 02', '5a4a2bb927eb60-41640687.png', 25, 'cards', 'new year cards', 'cards', 'aliusmanabbasi', 1, 'physical', 5),
 (33, 'test', '', 10, 'test', 'test', '', 'test2', 0, 'physical', 1),
-(34, 'test22', '', 0.002, 'test', 'test', '', 'test2', 0, 'physical', 1);
+(34, 'test22', '', 0.002, 'test', 'test', '', 'test2', 0, 'physical', 1),
+(37, 'shit', '', 100, 'shit', '', 'shit', 'testorder', 1, 'physical', 1),
+(40, 'testy', '641f402c7a5e66-53062476.jpg', 10, 'test', 'test', '1', 'shit', 1, 'physical', 1),
+(43, 't', '641f49662996b1-42075605.jpg', 1, '1', '2', '1', 'shit', 1, 'physical', 1);
 
 -- --------------------------------------------------------
 
@@ -170,7 +189,7 @@ CREATE TABLE `product_meta` (
   `product_id` int(11) DEFAULT NULL,
   `meta_key` varchar(50) NOT NULL,
   `meta_value` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_meta`
@@ -180,7 +199,10 @@ INSERT INTO `product_meta` (`id`, `product_id`, `meta_key`, `meta_value`) VALUES
 (1, 1, 'quantity', '15'),
 (2, 32, 'quantity', '25'),
 (3, 33, 'quantity', '1'),
-(4, 34, 'quantity', '10');
+(4, 34, 'quantity', '10'),
+(5, 37, 'quantity', '10'),
+(6, 40, 'quantity', '1'),
+(7, 43, 'quantity', '1');
 
 -- --------------------------------------------------------
 
@@ -198,25 +220,32 @@ CREATE TABLE `users` (
   `2fa_enabled` tinyint(1) DEFAULT NULL,
   `profile_image` varchar(250) DEFAULT NULL,
   `referral` varchar(150) DEFAULT NULL,
-  `btc_payment_address` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `btc_payment_address` varchar(500) DEFAULT NULL,
+  `btc_balance` decimal(16,8) DEFAULT 0.00000000
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password_hash`, `pin`, `public_key`, `referral_code`, `2fa_enabled`, `profile_image`, `referral`, `btc_payment_address`) VALUES
-(27, 'romeo', '$2y$10$gq4VIUJkM/BSChYAZw6CbuHLmueH4NRks0XVDsK7U1GlzORrvoMt.', '1234', '-----BEGIN PGP PUBLIC KEY BLOCK-----\r\n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\r\n/8TDmfQoQ+zIMTmcQLklbME=\r\n=WffV\r\n-----END PGP PUBLIC KEY BLOCK-----\r\n', 'aliusman', 1, NULL, 'romeo5', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 '),
-(28, 'test1', '$2y$10$gq4VIUJkM/BSChYAZw6CbuHLmueH4NRks0XVDsK7U1GlzORrvoMt.', '1234', '-----BEGIN PGP PUBLIC KEY BLOCK-----\r\n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\r\n/8TDmfQoQ+zIMTmcQLklbME=\r\n=WffV\r\n-----END PGP PUBLIC KEY BLOCK-----\r\n', '', 1, '', 'test111', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 '),
-(29, 'aliusman', '$2y$10$ZRSunhkMVJQJrhwNkLP0mupRzY3lBqtxDUZwJ7ogxoqT3OXvn0TeK', '8800', NULL, 'romeo', NULL, '', 'aliusman11', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 '),
-(32, 'rsp.stealth', '$2y$10$fQhf7CKEhZO5KYZf4u4cpeEtGw7S.g0Wpur1ZvwvEECSkTFQ19mwC', '8800', NULL, '', NULL, NULL, 'rsp.stealth11', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 '),
-(33, 'aliusman2018', '$2y$10$RqAX.JXfDfZV98ImZ9B2Q.4OLKigJpJLRxhq.3PghKcwLe6cPilOS', '8800', NULL, '', NULL, NULL, 'aliusman201814', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 '),
-(34, 'aliusmanabbasi', '$2y$10$D6uYVxFmY/9by6qeLtmef.SKQCaTwOceJlm4/Hcl0d3T6Bmljt1cG', '8800', NULL, '', NULL, '5a3f50bf055df2.33907106.png', 'aliusmanabbasi13', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 '),
-(36, 'romeostealth', '$2y$10$qe7bSVoaNN/fCTxFYGJnrOBTraYzfvqibAIYhr4U4LVsf6yAq0z3q', '8800', NULL, '', NULL, NULL, 'romeostealth15', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 '),
-(37, 'noorhussan', '$2y$10$HGT06DIWW2QwZh6Tn3uXhO.XGNJaHgIukBcpsFc6XIdl2FCzCZc3a', '8800', NULL, '', NULL, NULL, 'noorhussan8', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 '),
-(38, 'peero', '$2y$10$YAi//vfEMXiTEUCN31albudGTo6n4UAMTDNWncu1r2gM59QCyqjxC', '9900', NULL, '', NULL, NULL, 'peero15', '2NEkawVj3S8XzxFytYDPHvK1yBvxYvkVuBR'),
-(39, 'test3', '$2y$10$wii0/W1vky9BaQmP2RKTEeIKolgF3HztDpWv6UqA3nKskHl1Y9AqC', '0000', NULL, '', NULL, NULL, 'test39', '3LTrZNTdQBRGW9mVnWvcBzgsnnVZZ1rJpZ'),
-(40, 'test2', '$2y$10$X88OYyoBnqfwVmeBQPzjoua3Cd4J1BitF64kMQ9co/d5Ks.2/RUiq', '1234', NULL, '', NULL, NULL, 'test28', '3LW7uhnuSm1rG4K8Lkzax9RXJnFkg3nJWp');
+INSERT INTO `users` (`user_id`, `username`, `password_hash`, `pin`, `public_key`, `referral_code`, `2fa_enabled`, `profile_image`, `referral`, `btc_payment_address`, `btc_balance`) VALUES
+(27, 'romeo', '$2y$10$gq4VIUJkM/BSChYAZw6CbuHLmueH4NRks0XVDsK7U1GlzORrvoMt.', '1234', '-----BEGIN PGP PUBLIC KEY BLOCK-----\r\n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\r\n/8TDmfQoQ+zIMTmcQLklbME=\r\n=WffV\r\n-----END PGP PUBLIC KEY BLOCK-----\r\n', 'aliusman', 1, NULL, 'romeo5', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 ', 0.00000000),
+(28, 'test1', '$2y$10$gq4VIUJkM/BSChYAZw6CbuHLmueH4NRks0XVDsK7U1GlzORrvoMt.', '1234', '-----BEGIN PGP PUBLIC KEY BLOCK-----\r\n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\r\n/8TDmfQoQ+zIMTmcQLklbME=\r\n=WffV\r\n-----END PGP PUBLIC KEY BLOCK-----\r\n', '', 1, '', 'test111', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 ', 0.00000000),
+(29, 'aliusman', '$2y$10$ZRSunhkMVJQJrhwNkLP0mupRzY3lBqtxDUZwJ7ogxoqT3OXvn0TeK', '8800', NULL, 'romeo', NULL, '', 'aliusman11', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 ', 0.00000000),
+(32, 'rsp.stealth', '$2y$10$fQhf7CKEhZO5KYZf4u4cpeEtGw7S.g0Wpur1ZvwvEECSkTFQ19mwC', '8800', NULL, '', NULL, NULL, 'rsp.stealth11', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 ', 0.00000000),
+(33, 'aliusman2018', '$2y$10$RqAX.JXfDfZV98ImZ9B2Q.4OLKigJpJLRxhq.3PghKcwLe6cPilOS', '8800', NULL, '', NULL, NULL, 'aliusman201814', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 ', 0.00000000),
+(34, 'aliusmanabbasi', '$2y$10$D6uYVxFmY/9by6qeLtmef.SKQCaTwOceJlm4/Hcl0d3T6Bmljt1cG', '8800', NULL, '', NULL, '5a3f50bf055df2.33907106.png', 'aliusmanabbasi13', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 ', 0.00000000),
+(36, 'romeostealth', '$2y$10$qe7bSVoaNN/fCTxFYGJnrOBTraYzfvqibAIYhr4U4LVsf6yAq0z3q', '8800', NULL, '', NULL, NULL, 'romeostealth15', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 ', 0.00000000),
+(37, 'noorhussan', '$2y$10$HGT06DIWW2QwZh6Tn3uXhO.XGNJaHgIukBcpsFc6XIdl2FCzCZc3a', '8800', NULL, '', NULL, NULL, 'noorhussan8', 'A222SUT7PckXnL39ok1ra5wzuUCrEHu1S00 ', 0.00000000),
+(38, 'peero', '$2y$10$YAi//vfEMXiTEUCN31albudGTo6n4UAMTDNWncu1r2gM59QCyqjxC', '9900', NULL, '', NULL, NULL, 'peero15', '2NEkawVj3S8XzxFytYDPHvK1yBvxYvkVuBR', 0.00000000),
+(39, 'test3', '$2y$10$wii0/W1vky9BaQmP2RKTEeIKolgF3HztDpWv6UqA3nKskHl1Y9AqC', '0000', NULL, '', NULL, NULL, 'test39', '3LTrZNTdQBRGW9mVnWvcBzgsnnVZZ1rJpZ', 0.00000000),
+(40, 'test2', '$2y$10$X88OYyoBnqfwVmeBQPzjoua3Cd4J1BitF64kMQ9co/d5Ks.2/RUiq', '1234', NULL, '', NULL, NULL, 'test28', '3LW7uhnuSm1rG4K8Lkzax9RXJnFkg3nJWp', 0.00000000),
+(41, 'fuckyou', '$7$C6..../....4B7YXfDHcdbzeTPA19Rl5Nzd7RLw4iI3Q9YFIqGF8u4$cJKgyznO15r28MpOVkYKEQq1W8WrYvlKHgvLHjo/pC/', '1234', NULL, '', NULL, NULL, 'still13', 'bc1q3xtz6rhyfwkck6jkxl0g5cmc24gyaqvdck6nyp', 0.00006979),
+(42, 'still1', '$7$C6..../....lOdkvV6/YczTMfnlq1H7pPmAztLQLnM4ghYEoN1RAd6$46yyzOp46Ky2onQAlycdB2CZyVlrDDcohrsauYz5sv3', '1234', NULL, '', NULL, NULL, 'still112', 'bc1qdwcvylk4rjw656768684q37et6rak6700r3jx4', 0.00084539),
+(43, 'good', '$7$C6..../....MJk.PzNVFVsbh9.2Dm8orrjGxDNJ1giN5cW7VdTVfpB$t4Oti1LHv5Xd3zF5dEGOpCLtg6AKuiMTtyTlP61apS1', '1234', NULL, '', NULL, NULL, 'good15', 'bc1qzf2cvmzvjt30ygdtjquugttujwt33cqkgxedhx', 0.00000000),
+(52, 'testme', '$7$C6..../....Tgr18fHaUizedzBqKb5tYMa9j.I/dYMWLl.C4f5Gu00$atE2eBuCO68356KPaIy9VU6kCO1lUALrfd2lnxOnw56', '1234', NULL, '', NULL, NULL, 'testme8', 'tb1qg2as08vmv907r2r004py0j4ujwjrlrx7zn8trv', 0.00000000),
+(53, 'testme1', '$7$C6..../....or6RzJdPbqdQXg7uwRb/OdKikRr1hvekRqFm9xawGk.$ng2iiQq.UqjHHvmYhu/VZnfk9q2vuoCaG8403GU9qk3', '1234', NULL, '', NULL, NULL, 'testme110', 'tb1qekv0tf24dyd6vx3vyw3m94gwh4pr6qs6c32y6a', 0.00000000),
+(54, 'test1234', '$7$C6..../....AXrDiSExBmcb4jmEsvFQRuT.O3ZNjniOJlq.eVn69.0$wYxnz8MegiD/cEa5Z31uyOPeMSYXDFnSD3tA5QzLB05', '1234', NULL, '', NULL, NULL, 'test12347', 'tb1qc9pgykd74y8q46k74jdy45g2ave44yl9xyxvye', 0.00009302);
 
 -- --------------------------------------------------------
 
@@ -229,7 +258,7 @@ CREATE TABLE `user_feedbacks` (
   `user_id` varchar(250) NOT NULL,
   `vendor_id` varchar(250) NOT NULL,
   `feedback_value` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_feedbacks`
@@ -252,7 +281,7 @@ CREATE TABLE `user_meta` (
   `user_id` int(11) NOT NULL,
   `meta_key` varchar(50) NOT NULL,
   `meta_value` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_meta`
@@ -324,41 +353,50 @@ ALTER TABLE `user_meta`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
 --
 -- AUTO_INCREMENT for table `order_reviews`
 --
 ALTER TABLE `order_reviews`
   MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
 --
 -- AUTO_INCREMENT for table `product_meta`
 --
 ALTER TABLE `product_meta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
 --
 -- AUTO_INCREMENT for table `user_feedbacks`
 --
 ALTER TABLE `user_feedbacks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `user_meta`
 --
 ALTER TABLE `user_meta`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
