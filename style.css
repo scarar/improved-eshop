@@ -1,0 +1,177 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+.navbar-nav{
+    float:right;
+}
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form,.navbar-inverse{
+    background-color:#fbfbfb;
+}
+.navbar-inverse{
+    border-color:#f5f5f5;
+}
+.navbar-inverse .navbar-nav > li > a{
+    color:dimgrey;
+}
+.navbar-inverse .navbar-nav > li > a:hover{
+    color:#fc3434;
+}
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+}
+form{
+    background: #fbfbfb;
+    padding:30px 20px;
+}
+.main{
+    min-height:500px;
+    padding: 20px 40px;
+    background-color:#f5f5f5;
+}
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand{
+    color: dimgray;
+    font-size: 22px;
+    font-weight: bold;
+}
+.navbar > .container .navbar-brand:hover, .navbar > .container-fluid .navbar-brand:hover{
+    color:black;
+}
+/* Set black background color, white text and some padding */
+footer {
+    border-top:#f5f5f5 1px solid;
+    background-color: #fbfbfb;
+    color: black;
+    padding: 15px;
+}
+.btn-primary{
+    background:#fc3434;
+    border-color:red;
+}
+.btn-primary:hover{
+    background:#fc3434;
+    opacity:.9;
+}
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .row.content {height:auto;}
+}
+.dropdown-menu {
+    position: absolute !important;
+    display:block !important;
+}
+.sidebar{
+    background: #fbfbfb;
+    min-height: 500px;
+    padding: 10px;
+    border-right: 1px solid #f5f5f5;
+}
+.navbar-nav li ul{
+    display:none !important;
+}
+.navbar-nav li:hover ul.dropdown-menu{
+    display:block !Important;
+}
+
+.navbar-inverse .navbar-nav > li > a:focus{
+    color:dimgrey !important;
+}
+
+.fullheight{
+    margin-top: 45px;
+}
+.p_row{
+    height:140px;
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    margin: 10px 0;
+}
+.p_tile{
+    padding: 0px;
+    margin: 0;
+    text-align: left;
+    max-height: 120px;
+    overflow: hidden;
+}
+.p_image_tile{
+    padding: 0px;
+}
+.p_title{
+    margin: 0;
+}
+.p_image img{
+    display: block;
+    max-width: 220px;
+    height: 120px;
+}
+.single_image {
+    float: left;
+    padding-right: 20px;
+}
+.single_image img{
+    width: 300px;
+    height: 300px;
+}
+.single_title{
+    margin: 0;
+}
+
+.post_nav_link{
+    margin: 10px;
+    font-size: 16px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 2px solid;
+    border-radius: 5px;
+    line-height: 26px;
+    background: white;
+    text-decoration: none;
+}
+.post_nav_link:hover{
+    background:dodgerblue;
+    color:white;
+    border:dodgerblue 2px solid;
+}
+.order_steps_ul{
+    text-align: center;
+}
+.order_steps_ul li{
+    list-style:none;
+    width: 200px;
+    height: 80px;
+    display: inline-block;
+    text-align: center;
+}
+.order_steps_ul li i{
+    font-size: 42px;
+}
+.order_steps_ul li span.active i,.order_steps_ul li span.active p{
+    color: #14c614;
+}
+
+.review_stars_empty , .review_stars_filled{
+    width:95px;
+    height:18px;
+    position: absolute;
+}
+.review_stars_empty{
+    z-index: 1;
+    background:url('/images/empty_stars.png');
+    background-repeat: no-repeat ;
+}
+.review_stars_filled{
+    z-index: 2;
+    background-image:url('/images/fill_stars.png');
+}
