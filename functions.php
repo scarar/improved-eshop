@@ -3,12 +3,12 @@
 function get_db_connection() {
     static $db = null;
     if ($db === null) {
-        $config = parse_ini_file('db.ini', true);
+        $config = require __DIR__ . '/sql_file/return_db_array.php';
         try {
             $db = new PDO(
-                "mysql:host=localhost;dbname=" . $config['database']['db_name'],
-                $config['database']['db_user'],
-                $config['database']['db_password'],
+                "mysql:host=localhost;dbname=" . $config['db_name'],
+                $config['db_user'],
+                $config['db_password'],
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
         } catch (PDOException $e) {
