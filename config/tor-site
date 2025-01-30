@@ -1,0 +1,142 @@
+# Tor Hidden Service Nginx Configuration
+# Place this file in /etc/nginx/sites-available/tor-site
+# Then create symlink: sudo ln -s /etc/nginx/sites-available/tor-site /etc/nginx/sites-enabled/
+# Remove default: sudo rm /etc/nginx/sites-enabled/default
+
+server {
+    # Listen on localhost port 8484 (matches torrc configuration)
+    # IMPORTANT: Update your torrc file to use:
+    # HiddenServiceDir /var/lib/tor/ai-test
+    # HiddenServicePort 80 127.0.0.1:8484
+    listen 127.0.0.1:8484 default_server;
+    
+    # Your .onion address
+    # IMPORTANT: Replace with your actual .onion address
+    server_name skd3l736skknsemycyewqo3n3xqjfpecibgugmpqx3gntky2al5oecyd.onion;
+    
+    # Document root - Update if your path is different
+    root /var/www/html;
+    index index.php index.html index.htm;
+    
+    # Disable server tokens for security
+    server_tokens off;
+
+    # Security headers for Tor
+    # These match the headers in config.php
+    add_header X-Frame-Options "DENY" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "no-referrer" always;
+    add_header Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'" always;
+    add_header Onion-Location $scheme://$server_name$request_uri;
+    add_header Permissions-Policy "geolocation=(), microphone=(), camera=()";
+
+    # Main location block - Only allow local access
+    location / {
+        # Only allow access from localhost (Tor)
+        allow 127.0.0.1;
+        deny all;
+        
+        # Try files or pass to index.php
+        try_files $uri $uri/ /index.php?$args;
+        
+        # Additional security headers
+        add_header X-Frame-Options "DENY" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header Referrer-Policy "no-referrer" always;
+    }
+
+    # PHP handling
+    # IMPORTANT: Verify PHP-FPM socket path matches your system
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        
+        # Update if your PHP-FPM socket path is different
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        
+        # Mark requests as coming through Tor
+        fastcgi_param HTTP_X_TOR "1";
+        
+        # Increased timeout for Bitcoin operations
+        fastcgi_read_timeout 300;
+        include fastcgi_params;
+        
+        # PHP security settings
+        fastcgi_param PHP_VALUE "
+            session.cookie_httponly=1;
+            session.cookie_secure=1;
+            session.cookie_samesite=Lax;
+            session.use_strict_mode=1;
+            session.gc_maxlifetime=3600;
+        ";
+    }
+
+    # URL rewrites for clean URLs
+    # Login and Registration
+    location /login { rewrite ^/login?$ /login.php; }
+    location /register { rewrite ^/register?$ /register.php; }
+    
+    # Profile Management
+    location /profile/settings { rewrite ^/profile/settings?$ /profile/settings.php; }
+    location /profile/add-new-product { rewrite ^/profile/add-new-product?$ /profile/add-new-product.php; }
+    location /profile/pin { rewrite ^/profile/pin?$ /profile/pin.php; }
+    location /profile/reset-password { rewrite ^/profile/reset-password?$ /profile/reset-password.php; }
+    location /profile/pgp-2fa { rewrite ^/profile/pgp-2fa?$ /profile/pgp-2fa.php; }
+    location /profile/btc_address { rewrite ^/profile/btc_address?$ /profile/btc_address.php; }
+    location /profile { rewrite ^/profile?$ /profile.php; }
+    
+    # Listings and Products
+    location /listings/products { rewrite ^/listings/products?$ /listings/products.php; }
+    location /vendors/vendor_products { rewrite ^/vendors/vendor_products?$ /vendors/vendor_products.php; }
+    location /listings/single-product { rewrite ^/listings/single-product?$ /listings/single-product.php; }
+    
+    # Order handling with identifier
+    location ~* /listings/order {
+        if ($arg_identifier ~* ^(.+)$) {
+            rewrite ^/listings/order?$ /listings/order.php;
+        }   
+    }
+    
+    location /listings/ {
+        try_files $uri $uri/ /listings/order.php?identifier=$args;
+    }
+    
+    # Authentication
+    location /pgp-login { rewrite ^/pgp-login?$ /pgp-login.php; }
+    location /logout { rewrite ^/logout?$ /logout.php; }
+
+    # Deny access to sensitive files
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+
+    # Protect configuration and helper files
+    location ~ ^/(config|helpers|tor_helpers|bitcoin_helpers)\.php$ {
+        deny all;
+        return 404;
+    }
+}
+
+# Configuration Checklist:
+# 1. Update torrc file to use port 8484
+# 2. Verify PHP-FPM socket path
+# 3. Update document root path if different
+# 4. Update .onion address
+# 5. Set correct permissions:
+#    sudo chown -R www-data:www-data /var/www/html
+#    sudo chmod -R 755 /var/www/html
+# 6. Enable the site:
+#    sudo ln -s /etc/nginx/sites-available/tor-site /etc/nginx/sites-enabled/
+# 7. Test configuration:
+#    sudo nginx -t
+# 8. Reload services:
+#    sudo systemctl reload nginx
+#    sudo systemctl restart tor
+#    sudo systemctl restart php8.2-fpm
