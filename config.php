@@ -95,42 +95,46 @@ foreach ($directories as $dir) {
 // Set timezone
 date_default_timezone_set(APP_TIMEZONE);
 
-// Security headers
+// Security headers for Tor - no external resources
 $csp = [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
-    "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
-    "img-src 'self' data: https:",
-    "font-src 'self' https://cdnjs.cloudflare.com",
+    "default-src 'none'",
+    "script-src 'self'",
+    "style-src 'self'",
+    "img-src 'self' data:",
+    "font-src 'self'",
     "connect-src 'self'",
-    "media-src 'self'",
+    "media-src 'none'",
     "object-src 'none'",
     "frame-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
-    "frame-ancestors 'none'"
+    "frame-ancestors 'none'",
+    "upgrade-insecure-requests"
 ];
 
+// Headers optimized for Tor hidden service
 header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
 header('X-Content-Type-Options: nosniff');
-header('Referrer-Policy: strict-origin-when-cross-origin');
+header('Referrer-Policy: no-referrer');
 header('Content-Security-Policy: ' . implode('; ', $csp));
-header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
-header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
+header('Onion-Location: ' . getenv('ONION_LOCATION')); // Add your .onion address
+header('Alt-Svc: h2="' . getenv('ONION_LOCATION') . ':443"');
 
-// Session configuration
+// Session configuration optimized for Tor
 $session_options = [
     'cookie_httponly' => 1,
     'cookie_secure' => 1,
-    'cookie_samesite' => 'Strict',
+    'cookie_samesite' => 'Lax', // Less strict for Tor browser compatibility
     'use_strict_mode' => 1,
     'use_only_cookies' => 1,
     'gc_maxlifetime' => SESSION_EXPIRY,
     'sid_length' => 48,
     'sid_bits_per_character' => 6,
     'cache_limiter' => 'nocache',
-    'cookie_lifetime' => SESSION_EXPIRY
+    'cookie_lifetime' => SESSION_EXPIRY,
+    'cookie_domain' => parse_url(getenv('ONION_LOCATION'), PHP_URL_HOST) ?: '',
+    'cookie_path' => '/'
 ];
 
 foreach ($session_options as $key => $value) {
