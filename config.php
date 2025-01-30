@@ -65,10 +65,10 @@ define('LOG_DAYS', getenv('LOG_DAYS') ?: 30);
 
 // Bitcoin settings
 define('BTC_RPC_HOST', getenv('BTC_RPC_HOST') ?: 'localhost');
-define('BTC_RPC_PORT', getenv('BTC_RPC_PORT') ?: 18332);
+define('BTC_RPC_PORT', getenv('BTC_RPC_PORT') ?: 8332);  // Mainnet port
 define('BTC_RPC_USER', getenv('BTC_RPC_USER') ?: 'root');
 define('BTC_RPC_PASS', getenv('BTC_RPC_PASS') ?: '1mN%AWP46J?W$CdW');
-define('BTC_NETWORK', getenv('BTC_NETWORK') ?: 'testnet');
+define('BTC_NETWORK', getenv('BTC_NETWORK') ?: 'mainnet');
 
 // Email settings
 define('MAIL_HOST', getenv('MAIL_HOST') ?: 'smtp.mailtrap.io');
