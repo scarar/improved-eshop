@@ -18,11 +18,17 @@ ini_set('error_log', __DIR__ . '/logs/error.log');
 // Application settings
 define('APP_NAME', getenv('APP_NAME') ?: 'Improved E-Shop');
 define('APP_VERSION', '1.0.0');
-define('APP_URL', getenv('APP_URL') ?: 'http://' . $_SERVER['HTTP_HOST']);
+define('APP_URL', getenv('APP_URL') ?: 'http://localhost:8484');
 define('APP_ROOT', __DIR__);
 define('APP_TIMEZONE', getenv('APP_TIMEZONE') ?: 'UTC');
 define('APP_CHARSET', 'UTF-8');
 define('APP_DEBUG', getenv('APP_DEBUG') === 'true');
+
+// Tor settings
+define('TOR_ENABLED', true);
+define('TOR_HIDDEN_SERVICE_PORT', 8484);
+define('TOR_HIDDEN_SERVICE_HOST', '127.0.0.1');
+define('ONION_URL', getenv('ONION_URL'));
 
 // Database settings
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');

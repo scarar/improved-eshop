@@ -1,4 +1,4 @@
-<?php
+require_once 'config.php';\nrequire_once 'tor_init.php';\n\n<?php
 // Check if user is not logged in, redirect him to login page
 session_start();
 if(!isset($_SESSION['user']) || $_SESSION['user']==''){
